@@ -62,7 +62,7 @@ The given values are the mean of the benchmarking, done by the `criterion` crate
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
 
 ## Contributing
 
