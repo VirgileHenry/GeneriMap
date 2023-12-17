@@ -56,6 +56,14 @@ impl GeneriMap {
     pub fn remove<T: 'static>(&mut self) -> Option<T> {
         unsafe { Some((self.map.remove(&TypeId::of::<T>())?.as_ptr() as *mut T).read()) }
     }
+
+    pub unsafe fn iter_blobs(&self) -> impl Iterator<Item = &Vec<u8>> {
+        self.map.values()
+    }
+
+    pub unsafe fn iter_blobs_mut(&mut self) -> impl Iterator<Item = &mut Vec<u8>> {
+        self.map.values_mut()
+    }
 }
 
 #[derive(Default)]

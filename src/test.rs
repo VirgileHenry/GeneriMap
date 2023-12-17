@@ -23,3 +23,18 @@ pub fn simple_add_get() {
     assert_eq!(map.get::<String>(), Some(&"Hello World".to_string()));
     assert_eq!(map.get::<Vec<u8>>(), Some(&vec![1u8, 2u8, 3u8]));
 }
+
+#[test]
+pub fn iter_blobs() {
+    let mut map = GeneriMap::new();
+    // we can't test more than one value as we can't retain the hashmap iter order
+    map.insert(42u64);
+    unsafe {
+        for bytes in map.iter_blobs() {
+            let actual_bytes = 42u64.to_ne_bytes();
+            for (b1, b2) in bytes.iter().zip(actual_bytes.iter()) {
+                assert_eq!(b1, b2);
+            }
+        }
+    }
+}
